@@ -1,0 +1,21 @@
+/Applications/Firefox.app/Contents/MacOS/firefox -marionette -P dev &
+/Applications/Firefox.app/Contents/MacOS/firefox -P noPP &
+/Applications/Firefox.app/Contents/MacOS/firefox -P devzero &
+/Applications/Firefox.app/Contents/MacOS/firefox -chromebug
+/Applications/Firefox.app/Contents/MacOS/firefox -CreateProfile dev
+/Applications/Firefox.app/Contents/MacOS/firefox-bin --ProfileManager
+----
+sh -x make
+eslint . | more
+----
+vi manifest.json # version changes
+git tag -a v5.0.5 -m "version 5.0.5"
+----
+/Applications/SeaMonkey.app/Contents/MacOS/seamonkey &
+/Applications/Thunderbird.app/Contents/MacOS/thunderbird &
+----
+open https://addons.mozilla.org/en-US/developers/addon/personaswitcher/versions
+open https://hg.mozilla.org/mozilla-central/tags
+open https://www.mozilla.org/en-US/about/forums/
+----
+~/Downloads/sonar-scanner-3.0.3.778-macosx/bin/sonar-scanner   -Dsonar.projectKey=personaswitcher   -Dsonar.sources=.   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=81d2adb05c018b4a4888e090c4ce2270dabc67ba
